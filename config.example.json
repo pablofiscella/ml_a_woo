@@ -1,0 +1,21 @@
+{
+  "_comment": "Copiar este archivo a config.json y completar los valores",
+
+  "woo_url": "https://tu-tienda.com",
+  "woo_key": "ck_xxxxxxxxxxxxxxxxxxxx",
+  "woo_secret": "cs_xxxxxxxxxxxxxxxxxxxx",
+
+  "ml_app_id": "1234567890",
+  "ml_secret": "tu_client_secret",
+  "ml_access_token": "APP_USR-...",
+  "ml_refresh_token": "TG-...",
+  "ml_seller_id": "12345678",
+  "ml_currency": "ARS",
+  "ml_default_category": "MLA1055",
+  "ml_listing_type": "gold_special",
+
+  "auto_publish_new": false,
+
+  "db_path": "sync.db",
+  "sync_interval_minutes": 5
+}

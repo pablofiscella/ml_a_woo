@@ -1,0 +1,16 @@
+[Unit]
+Description=WooCommerce ↔ Mercado Libre Sync Service
+After=network.target
+
+[Service]
+Type=simple
+User=syncuser
+WorkingDirectory=/opt/woo-ml-sync
+ExecStart=/opt/woo-ml-sync/venv/bin/python scheduler.py
+Restart=on-failure
+RestartSec=30
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target
