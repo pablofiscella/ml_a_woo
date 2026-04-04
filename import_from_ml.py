@@ -267,7 +267,7 @@ def ml_item_to_woo(item: dict, description_text: str,
     ml_id = item["id"]
 
     images = []
-    for p in item.get("pictures", [])[:10]:
+    for p in item.get("pictures", [])[:3]:
         url = _fix_image_url(p.get("url", ""))
         if _validate_image_url(url):
             images.append({"src": url})
@@ -441,11 +441,11 @@ def import_item(ml_id: str, woo: WooAPI, ml: MercadoLibreAPI,
                   f"attrs={len(payload['attributes'])}")
             return "created"
 
-        # ¿Ya mapeado? → actualizar
+        # ¿Ya mapeado? → actualizar (sin resubir fotos)
         row = con.execute("SELECT woo_id FROM product_map WHERE ml_id=?", (ml_id,)).fetchone()
         if row:
             woo_id = row[0]
-            update_payload = {k: v for k, v in payload.items() if k != "sku"}
+            update_payload = {k: v for k, v in payload.items() if k not in ("sku", "images")}
             woo.update_product(woo_id, update_payload)
             con.execute("UPDATE product_map SET last_synced=? WHERE woo_id=?",
                         (datetime.now().isoformat(), woo_id))
@@ -463,7 +463,7 @@ def import_item(ml_id: str, woo: WooAPI, ml: MercadoLibreAPI,
                 (woo_id, ml_id, payload["sku"], datetime.now().isoformat())
             )
             con.commit()
-            update_payload = {k: v for k, v in payload.items() if k != "sku"}
+            update_payload = {k: v for k, v in payload.items() if k not in ("sku", "images")}
             woo.update_product(woo_id, update_payload)
             log_event(con, "ML->WOO", "product_import", ml_id, "ok", f"recuperado por SKU woo_id={woo_id}")
             print(f"  ↩ Recuperado por SKU → Woo {woo_id}: {title[:55]}")
