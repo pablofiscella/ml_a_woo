@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # WooCommerce ↔ Mercado Libre Sync
 ### WooCommerce es la fuente de verdad
 
@@ -174,3 +175,7 @@ Sí, duplicar el directorio con su propio config.json y correr otro scheduler co
 
 **¿Qué pasa con las variantes de productos?**
 La versión actual maneja productos simples. Para variantes (talle/color), hay que extender `sync_engine.py` para iterar `p['variations']`.
+=======
+# ml_a_woo
+Repositori con scripts para migrar de Mercado libre a woocommerce y mantenerlo actualizado
+>>>>>>> 0482d5038f570aadb69e7fe6033ee4b31a14a78d

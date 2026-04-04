@@ -13,7 +13,7 @@ if __name__ == "__main__":
     print("Scheduler iniciado. Ctrl+C para detener.")
     while True:
         cfg = load_config()
-        interval = cfg.get("sync_interval_minutes", 5) * 60
+        interval = cfg.get("sync_interval_minutes", 15) * 60
         try:
             run_sync()
         except Exception as e:
